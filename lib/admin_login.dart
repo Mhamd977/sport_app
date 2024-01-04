@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sport_app/admin-page.dart';
 import 'clientPage.dart';
 
 void main() {
@@ -26,9 +27,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
 
   Future<void> loginUser() async {
     final response = await http.post(
-      Uri.parse('https://sport-app.000webhostapp.com/login.php'),
+      Uri.parse('https://sport-app.000webhostapp.com/admin-login.php'),
       body: {
-        'action': 'login',
+        'action': 'admin-login',
         'username': usernameController.text,
         'password': passwordController.text,
       },
@@ -40,10 +41,9 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
       if (response.body.contains('Successfully logged in')) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ShowMissions()),
+          MaterialPageRoute(builder: (context) => AddMission()),
         );
       } else {
-
         print('Login failed');
       }
     } else {
